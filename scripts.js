@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Código que será executado quando o navegador carregar
   const app = document.getElementById('root');
 
@@ -16,8 +16,17 @@ document.addEventListener("DOMContentLoaded", function() {
           throw new Error('Request error');
         }
       })
-      .then((data) => { 
-        console.log(data);        
+      .then((data) => {
+        data.map((item) => {
+          const image = document.createElement('img');
+          image.setAttribute('src', item.imagens.resolucaoMedia.url);
+
+          const anchor = document.createElement('a');
+          anchor.setAttribute('href', item.link);
+          anchor.appendChild(image);
+
+          container.appendChild(anchor);
+        });
       })
       .catch(err => {
         console.log(err);
