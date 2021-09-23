@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   app.appendChild(container);
 
+  const row = document.createElement('div');
+  row.setAttribute('class', 'row');
+
+  container.appendChild(row);
+
   (async function dataFecth() {
     await fetch('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
       .then((response) => {
@@ -18,14 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((data) => {
         data.map((item) => {
+          // const col = document.createElement('div');
+          // col.setAttribute('class', 'col');
+
+          // row.appendChild(col);
+
           const image = document.createElement('img');
           image.setAttribute('src', item.imagens.resolucaoMedia.url);
 
           const anchor = document.createElement('a');
           anchor.setAttribute('href', item.link);
+
           anchor.appendChild(image);
 
-          container.appendChild(anchor);
+          const col = document.createElement('div');
+          col.setAttribute('class', 'col');
+
+          col.appendChild(anchor);
+
+          row.appendChild(col);
         });
       })
       .catch(err => {
