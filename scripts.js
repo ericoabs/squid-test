@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   container.appendChild(row);
 
+  function formattedDate(date) {
+    let data = new Date(date);
+    return (((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear() + " " + data.getHours() + ":" + ((data.getMinutes()<10?'0':'') + data.getMinutes()));
+  }
+
   (async function dataFecth() {
     await fetch('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
       .then((response) => {
@@ -31,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
           
           const userName = document.createElement('div');
           userName.setAttribute('class', 'username');
-          userName.innerHTML += '@' + item.usuario.username;
+          userName.innerHTML += '@' + item.usuario.username;          
 
           const likes = document.createElement('div');
           likes.setAttribute('class', 'likes');
@@ -39,16 +44,46 @@ document.addEventListener("DOMContentLoaded", function () {
           
           const likesIcon = document.createElement('i');
           likesIcon.setAttribute('class', 'fas fa-heart');
-          
-          likes.appendChild(likesIcon);
-          
-          overlay.appendChild(likes);
-          
-          overlay.appendChild(userName);
 
-          const upvotes = document.createElement('div');
-          upvotes.setAttribute('class', 'text');
-          upvotes.innerHTML += '@' + item.usuario.username;
+          const likeContainer = document.createElement('div');
+          likeContainer.setAttribute('class', 'likeContainer');
+
+          likeContainer.appendChild(likesIcon);
+          likeContainer.appendChild(likes);
+
+          const comments = document.createElement('div');
+          comments.setAttribute('class', 'comments');
+          comments.innerHTML += item.comentarios;
+
+          const commentsIcon = document.createElement('i');
+          commentsIcon.setAttribute('class', 'fas fa-comment');
+
+          const commentsContainer = document.createElement('div');
+          commentsContainer.setAttribute('class', 'commentsContainer');
+
+          commentsContainer.appendChild(commentsIcon);
+          commentsContainer.appendChild(comments);
+
+          const createdAt = document.createElement('div');
+          createdAt.setAttribute('class', 'createdAt');
+          createdAt.innerHTML += formattedDate(item.criadoEm);
+
+          const createdAticon = document.createElement('i');
+          createdAticon.setAttribute('class', 'fas fa-calendar-week');
+
+          const createdAtContainer = document.createElement('div');
+          createdAtContainer.setAttribute('class', 'createdAtContainer');
+
+          createdAtContainer.appendChild(createdAticon);
+          createdAtContainer.appendChild(createdAt);
+                    
+          overlay.appendChild(userName);          
+          
+          overlay.appendChild(likeContainer);
+
+          overlay.appendChild(commentsContainer);
+
+          overlay.appendChild(createdAtContainer); 
           
           
           const anchor = document.createElement('a');
