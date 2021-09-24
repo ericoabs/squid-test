@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           overlay.setAttribute('class', 'overlay');
           
           const userName = document.createElement('div');
-          userName.setAttribute('class', 'text');
+          userName.setAttribute('class', 'username');
           userName.innerHTML += '@' + item.usuario.username;
 
           overlay.appendChild(userName);
