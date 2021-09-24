@@ -33,6 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
           userName.setAttribute('class', 'username');
           userName.innerHTML += '@' + item.usuario.username;
 
+          const likes = document.createElement('div');
+          likes.setAttribute('class', 'likes');
+          likes.innerHTML += item.upvotes;
+          
+          const likesIcon = document.createElement('i');
+          likesIcon.setAttribute('class', 'fas fa-heart');
+          
+          likes.appendChild(likesIcon);
+          
+          overlay.appendChild(likes);
+          
           overlay.appendChild(userName);
 
           const upvotes = document.createElement('div');
