@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return (((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear() + " " + data.getHours() + ":" + ((data.getMinutes()<10?'0':'') + data.getMinutes()));
   }
 
-  (async function dataFecth() {
+  (async function dataFetch() {
     await fetch('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
       .then((response) => {
         if (response.status === 200) {
