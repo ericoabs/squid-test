@@ -12,36 +12,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   container.appendChild(row);
 
-  function formattedDate(date) {
-    let data = new Date(date);
-    return (((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear() + " " + data.getHours() + ":" + ((data.getMinutes()<10?'0':'') + data.getMinutes()));
-  }
-
+  function formattedDate(data) {
+    const [date, time] = new Date(data).toLocaleString().split(' ');
+    const [hour, minute] = time.split(':');
+    return `${date} ${hour}:${minute}`;
+  };
+  
   (async function dataFetch() {
     await fetch('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
       .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
+        if (response.status !== 200) {
           throw new Error('Request error');
         }
+        return response.json();
       })
       .then((data) => {
         data.map((item) => {
           const image = document.createElement('img');
           image.setAttribute('src', item.imagens.thumbnail.url);
-          
+
           const overlay = document.createElement('div');
           overlay.setAttribute('class', 'overlay');
-          
+
           const userName = document.createElement('div');
           userName.setAttribute('class', 'username');
-          userName.innerHTML += '@' + item.usuario.username;          
+          userName.innerHTML += '@' + item.usuario.username;
 
           const likes = document.createElement('div');
           likes.setAttribute('class', 'likes');
           likes.innerHTML += item.upvotes;
-          
+
           const likesIcon = document.createElement('i');
           likesIcon.setAttribute('class', 'fas fa-heart');
 
@@ -76,15 +76,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
           createdAtContainer.appendChild(createdAticon);
           createdAtContainer.appendChild(createdAt);
-                    
-          overlay.appendChild(userName);          
-          
+
+          overlay.appendChild(userName);
+
           overlay.appendChild(likeContainer);
 
           overlay.appendChild(commentsContainer);
 
           overlay.appendChild(createdAtContainer);
-              
+
           const anchor = document.createElement('a');
           anchor.setAttribute('href', item.link);
           anchor.setAttribute('class', 'overlayContainer');
