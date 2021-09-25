@@ -1,6 +1,6 @@
 # Teste de desenvolvimento para a Squid
 
-Página desenvilvida consumindo o JSON da requisição `(GET) - https://us-central1-squid-apis.cloudfunctions.net/test-front-basic`.
+Página desenvolvida consumindo o JSON da requisição `(GET) - https://us-central1-squid-apis.cloudfunctions.net/test-front-basic`.
 
 Foi utilizado o próprio Framework da Squid no projeto: [SQUID CSS](https://css.squidit.com.br/).
 
