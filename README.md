@@ -1,20 +1,24 @@
-# Front-end - Avalição Squid
+# Teste de desenvolvimento para a Squid
 
-## Proposta
-Criar uma página HTML utilizando de ponto de partida esse repositório.
-Depois, utilizando Javascript pegar os dados do JSON da requisição `(GET) - https://us-central1-squid-apis.cloudfunctions.net/test-front-basic`.
-Liste o feed do Instagram da @squidapp. Utilizar de CSS para personalizar o layout como o da imagem do resultado abaixo, considerar o hover para todas as imagens (ver primeira imagem do resultado).
-Além do hover, cada imagem deve ter um click para o Link da imagem no instagram, abrindo em uma nova aba ao clicar.
-Responsividade e experiência de usuário (como loaders, tratamento de erros, animações, efeitos, etc) serão levados em consideração na avaliação.
-No final, subir o código em um repositório público no seu próprio GitHub e mandar o link para o avaliador.
+Página desenvilvida consumindo o JSON da requisição `(GET) - https://us-central1-squid-apis.cloudfunctions.net/test-front-basic`.
 
-## Bonus
-Utilizar o framework da Squid para construção do layout
-[SQUID CSS](https://css.squidit.com.br/)
+Foi utilizado o próprio Framework da Squid no projeto: [SQUID CSS](https://css.squidit.com.br/).
 
-## Problemas e Duvidas
-Caso trenha algum problema com endpoint, ou alguma duvida sobre o teste abra uma Issue nesse repositório, não precisa entrar em contato com o seu recrutador!
+<p align="center">
+  <img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1632569387/Captura_de_tela_de_2021-09-25_08-12-18_q4vvhi.png" alt="Size Limit CLI" width="738">
+</p>
 
-## Resultado Final
-![Resultado](assets/result.jpeg "Resultado")
-# squid-test
+<p align="center">
+  <img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1632569387/Captura_de_tela_de_2021-09-25_08-12-45_rtysoo.png" alt="Size Limit CLI" width="738">
+</p>
+
+## Utilização
+
+* Não é necessário a instalação de nenhum pacote, basta baixar o projeto e rodar o arquivo index.html
+
+## Créditos
+
+Feito com 💜 por Erico Alexandre
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ericoabs)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ericoabs/)
