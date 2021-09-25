@@ -5,7 +5,7 @@ Página desenvolvida consumindo o JSON da requisição `(GET) - https://us-centr
 Foi utilizado o próprio Framework da Squid no projeto: [SQUID CSS](https://css.squidit.com.br/).
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1632569387/Captura_de_tela_de_2021-09-25_08-12-18_q4vvhi.png" alt="Size Limit CLI" width="738">
+  <img src="https://res.cloudinary.com/dvawcyisr/image/upload/v1632569779/Captura_de_tela_de_2021-09-25_08-34-17_gd7euc.png" alt="Size Limit CLI" width="738">
 </p>
 
 <p align="center">
