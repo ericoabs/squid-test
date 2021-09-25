@@ -83,9 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           overlay.appendChild(commentsContainer);
 
-          overlay.appendChild(createdAtContainer); 
-          
-          
+          overlay.appendChild(createdAtContainer);
+              
           const anchor = document.createElement('a');
           anchor.setAttribute('href', item.link);
           anchor.setAttribute('class', 'overlayContainer');
