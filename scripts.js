@@ -1,107 +1,118 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Código que será executado quando o navegador carregar
-  const app = document.getElementById('root');
+  const app = document.getElementById("root");
 
-  const container = document.createElement('div');
-  container.setAttribute('class', 'container');
+  const namespace = 'https://us-central1-squid-apis.cloudfunctions.net';
+
+  const container = document.createElement("div");
+  container.setAttribute("class", "container");
 
   app.appendChild(container);
 
-  const row = document.createElement('div');
-  row.setAttribute('class', 'row');
+  const row = document.createElement("div");
+  row.setAttribute("class", "row");
 
   container.appendChild(row);
 
   function formattedDate(data) {
-    const [date, time] = new Date(data).toLocaleString().split(' ');
-    const [hour, minute] = time.split(':');
+    const [date, time] = new Date(data).toLocaleString().split(" ");
+    const [hour, minute] = time.split(":");
     return `${date} ${hour}:${minute}`;
-  };
-  
-  (async function dataFetch() {
-    await fetch('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
+  }
+
+  const getData = async () => {
+    const response = await fetch(`${namespace}/test-front-basic`)
       .then((response) => {
         if (response.status !== 200) {
-          throw new Error('Request error');
+          throw new Error("Request error");
         }
+
         return response.json();
       })
-      .then((data) => {
-        data.map((item) => {
-          const image = document.createElement('img');
-          image.setAttribute('src', item.imagens.thumbnail.url);
+      .catch((error) => {
+        console.error(error);
+      });
 
-          const overlay = document.createElement('div');
-          overlay.setAttribute('class', 'overlay');
+    return response;
+  };
 
-          const userName = document.createElement('div');
-          userName.setAttribute('class', 'username');
-          userName.innerHTML += '@' + item.usuario.username;
+  const createDOMElements = (data) => {
+    data.map((item) => {
+      const image = document.createElement("img");
+      image.setAttribute("src", item.imagens.thumbnail.url);
 
-          const likes = document.createElement('div');
-          likes.setAttribute('class', 'likes');
-          likes.innerHTML += item.upvotes;
+      const overlay = document.createElement("div");
+      overlay.setAttribute("class", "overlay");
 
-          const likesIcon = document.createElement('i');
-          likesIcon.setAttribute('class', 'fas fa-heart');
+      const userName = document.createElement("div");
+      userName.setAttribute("class", "username");
+      userName.innerHTML += "@" + item.usuario.username;
 
-          const likeContainer = document.createElement('div');
-          likeContainer.setAttribute('class', 'likeContainer');
+      const likes = document.createElement("div");
+      likes.setAttribute("class", "likes");
+      likes.innerHTML += item.upvotes;
 
-          likeContainer.appendChild(likesIcon);
-          likeContainer.appendChild(likes);
+      const likesIcon = document.createElement("i");
+      likesIcon.setAttribute("class", "fas fa-heart");
 
-          const comments = document.createElement('div');
-          comments.setAttribute('class', 'comments');
-          comments.innerHTML += item.comentarios;
+      const likeContainer = document.createElement("div");
+      likeContainer.setAttribute("class", "likeContainer");
 
-          const commentsIcon = document.createElement('i');
-          commentsIcon.setAttribute('class', 'fas fa-comment');
+      likeContainer.appendChild(likesIcon);
+      likeContainer.appendChild(likes);
 
-          const commentsContainer = document.createElement('div');
-          commentsContainer.setAttribute('class', 'commentsContainer');
+      const comments = document.createElement("div");
+      comments.setAttribute("class", "comments");
+      comments.innerHTML += item.comentarios;
 
-          commentsContainer.appendChild(commentsIcon);
-          commentsContainer.appendChild(comments);
+      const commentsIcon = document.createElement("i");
+      commentsIcon.setAttribute("class", "fas fa-comment");
 
-          const createdAt = document.createElement('div');
-          createdAt.setAttribute('class', 'createdAt');
-          createdAt.innerHTML += formattedDate(item.criadoEm);
+      const commentsContainer = document.createElement("div");
+      commentsContainer.setAttribute("class", "commentsContainer");
 
-          const createdAticon = document.createElement('i');
-          createdAticon.setAttribute('class', 'fas fa-calendar-week');
+      commentsContainer.appendChild(commentsIcon);
+      commentsContainer.appendChild(comments);
 
-          const createdAtContainer = document.createElement('div');
-          createdAtContainer.setAttribute('class', 'createdAtContainer');
+      const createdAt = document.createElement("div");
+      createdAt.setAttribute("class", "createdAt");
+      createdAt.innerHTML += formattedDate(item.criadoEm);
 
-          createdAtContainer.appendChild(createdAticon);
-          createdAtContainer.appendChild(createdAt);
+      const createdAticon = document.createElement("i");
+      createdAticon.setAttribute("class", "fas fa-calendar-week");
 
-          overlay.appendChild(userName);
+      const createdAtContainer = document.createElement("div");
+      createdAtContainer.setAttribute("class", "createdAtContainer");
 
-          overlay.appendChild(likeContainer);
+      createdAtContainer.appendChild(createdAticon);
+      createdAtContainer.appendChild(createdAt);
 
-          overlay.appendChild(commentsContainer);
+      overlay.appendChild(userName);
 
-          overlay.appendChild(createdAtContainer);
+      overlay.appendChild(likeContainer);
 
-          const anchor = document.createElement('a');
-          anchor.setAttribute('href', item.link);
-          anchor.setAttribute('class', 'overlayContainer');
+      overlay.appendChild(commentsContainer);
 
-          anchor.appendChild(image);
-          anchor.appendChild(overlay);
+      overlay.appendChild(createdAtContainer);
 
-          const col = document.createElement('div');
-          col.setAttribute('class', 'col');
+      const anchor = document.createElement("a");
+      anchor.setAttribute("href", item.link);
+      anchor.setAttribute("class", "overlayContainer");
 
-          col.appendChild(anchor);
+      anchor.appendChild(image);
+      anchor.appendChild(overlay);
 
-          row.appendChild(col);
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      const col = document.createElement("div");
+      col.setAttribute("class", "col");
+
+      col.appendChild(anchor);
+
+      row.appendChild(col);
+    });
+  };
+
+  (async function init() {
+    const data = await getData();
+    createDOMElements(data);
   })();
 });
